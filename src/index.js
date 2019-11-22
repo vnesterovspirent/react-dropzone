@@ -382,12 +382,12 @@ class Dropzone extends React.Component {
   }
 
   render() {
-    const { children, multiple, disabled } = this.props
+    const { children, multiple, disabled, accept, maxSize, minSize } = this.props
     const { isDragActive, isFocused, draggedFiles, acceptedFiles, rejectedFiles } = this.state
 
     const filesCount = draggedFiles.length
     const isMultipleAllowed = multiple || filesCount <= 1
-    const isDragAccept = filesCount > 0 && allFilesAccepted(draggedFiles, this.props.accept)
+    const isDragAccept = filesCount > 0 && allFilesAccepted(draggedFiles, accept, maxSize, minSize)
     const isDragReject = filesCount > 0 && (!isDragAccept || !isMultipleAllowed)
 
     return children({

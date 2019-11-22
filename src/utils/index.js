@@ -15,8 +15,10 @@ export function fileMatchSize(file, maxSize, minSize) {
   return file.size <= maxSize && file.size >= minSize
 }
 
-export function allFilesAccepted(files, accept) {
-  return files.every(file => fileAccepted(file, accept))
+export function allFilesAccepted(files, accept, maxSize, minSize) {
+  return files.every(file => {
+    return fileAccepted(file, accept) && fileMatchSize(file, maxSize, minSize)
+  })
 }
 
 // React's synthetic events has evt.isPropagationStopped,
